@@ -90,5 +90,6 @@
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous">
     </script>
+    <script src="js/main.js" ></script>
 </body>
 </html>
