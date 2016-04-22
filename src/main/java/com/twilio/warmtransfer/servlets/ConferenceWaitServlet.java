@@ -2,6 +2,9 @@ package com.twilio.warmtransfer.servlets;
 
 
 import com.google.inject.Singleton;
+import com.twilio.sdk.verbs.Play;
+import com.twilio.sdk.verbs.Say;
+import com.twilio.sdk.verbs.TwiMLResponse;
 import com.twilio.warmtransfer.utils.TwilioCapabilityBuilder;
 import org.json.simple.JSONObject;
 
@@ -13,26 +16,21 @@ import java.io.IOException;
 
 @Singleton
 public class ConferenceWaitServlet extends HttpServlet{
-    private TwilioCapabilityBuilder capabilityBuilder;
-
-    public ConferenceWaitServlet(){
-        capabilityBuilder = new TwilioCapabilityBuilder();
-    }
-
-    public ConferenceWaitServlet(TwilioCapabilityBuilder capabilityBuilder){
-        this.capabilityBuilder = capabilityBuilder;
-    }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        final String agentId = request.getParameter("agentId");
+        TwiMLResponse twiMLResponse = new TwiMLResponse();
+        Say say = new Say("Thank you for calling. Please wait in line for a few seconds. An agent will be with you shortly.");
 
-        JSONObject json = new JSONObject(){{
-            put("token", capabilityBuilder.getTokenForAgent(agentId));
-            put("agentId", agentId);
-        }};
-
-        response.setContentType("application/json");
-        json.writeJSONString(response.getWriter());
+        Play playMusic = new Play("http://com.twilio.music.classical.s3.amazonaws.com/BusyStrings.mp3");
+        playMusic.setLoop(0);
+        try {
+            twiMLResponse.append(say);
+            twiMLResponse.append(playMusic);
+        }catch (Exception ex){
+            ex.printStackTrace();
+            throw new RuntimeException(ex.getMessage());
+        }
+        response.getWriter().write(twiMLResponse.toEscapedXML());
     }
 }
