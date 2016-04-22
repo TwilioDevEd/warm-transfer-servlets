@@ -20,7 +20,7 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 @PrepareForTest(TwilioCapabilityBuilder.class)
 public class TwilioCapabilityBuilderTest {
 
-    @Test(expected = Exception.class)
+    @Test(expected = RuntimeException.class)
     public void raisesIfNoAccountSidSetForEnv() throws Exception {
         Map<String, String> env = new HashMap(){{
             put("TWILIO_AUTH_TOKEN", "token");
@@ -28,7 +28,7 @@ public class TwilioCapabilityBuilderTest {
         new TwilioCapabilityBuilder(env);
     }
 
-    @Test(expected = Exception.class)
+    @Test(expected = RuntimeException.class)
     public void raisesIfNoAuthTokenSetForEnv() throws Exception {
         Map<String, String> env = new HashMap(){{
             put("TWILIO_ACCOUNT_SID", "sid");

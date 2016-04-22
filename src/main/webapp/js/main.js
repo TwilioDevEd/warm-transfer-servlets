@@ -15,7 +15,7 @@ $(function() {
   $dialAgent2Button.on('click', dialAgent2);
 
   function fetchToken(agentId) {
-    $.post('/' + agentId + '/token', {}, function(data) {
+    $.post('token', {"agentId":agentId}, function(data) {
       currentAgentId = data.agentId;
       connectClient(data.token)
     }, 'json');
