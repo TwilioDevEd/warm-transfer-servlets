@@ -29,6 +29,7 @@ public class ConferenceWaitServlet extends HttpServlet{
             ex.printStackTrace();
             throw new RuntimeException(ex.getMessage());
         }
+        response.setContentType("text/xml");
         response.getWriter().write(twiMLResponse.toEscapedXML());
     }
 }

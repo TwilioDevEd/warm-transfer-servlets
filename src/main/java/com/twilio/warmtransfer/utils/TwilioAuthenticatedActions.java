@@ -45,7 +45,7 @@ public class TwilioAuthenticatedActions {
     public String callAgent(final String agent_id, final String callbackUrl) throws RuntimeException {
         TwilioRestClient twilioRestClient = new TwilioRestClient(accountSid, authToken);
         Map<String, String> callParams = new HashMap<String, String>(){{
-            put("To", agent_id);
+            put("To", "client:"+agent_id);
             put("From", twilioNumber);
             put("Url", callbackUrl);
         }};

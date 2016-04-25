@@ -1,10 +1,7 @@
 package com.twilio.warmtransfer.servlets.guice;
 
 import com.google.inject.servlet.ServletModule;
-import com.twilio.warmtransfer.servlets.ConferenceWaitServlet;
-import com.twilio.warmtransfer.servlets.ConnectClientServlet;
-import com.twilio.warmtransfer.servlets.IndexServlet;
-import com.twilio.warmtransfer.servlets.TokenServlet;
+import com.twilio.warmtransfer.servlets.*;
 
 
 public class WarmTransferServletModule extends ServletModule {
@@ -13,6 +10,7 @@ public class WarmTransferServletModule extends ServletModule {
         serve("/").with(IndexServlet.class);
         serve("/token").with(TokenServlet.class);
         serve("/conference/wait").with(ConferenceWaitServlet.class);
-        serve("conference/connect/client").with(ConnectClientServlet.class);
+        serve("/conference/connect/client").with(ConnectClientServlet.class);
+        serve("/conference/connect/agent*").with(ConnectAgentServlet.class);
     }
 }

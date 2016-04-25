@@ -1,5 +1,6 @@
 package com.twilio.warmtransfer.servlets;
 
+import com.google.inject.Singleton;
 import com.twilio.sdk.verbs.Conference;
 import com.twilio.sdk.verbs.Dial;
 import com.twilio.sdk.verbs.TwiMLException;
@@ -11,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-
+@Singleton
 public class ConnectClientServlet extends HttpServlet {
 
     private TwilioAuthenticatedActions twilioAuthenticatedActions;
@@ -29,7 +32,9 @@ public class ConnectClientServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String conference_id = request.getParameter("CallSid");
 
-        twilioAuthenticatedActions.callAgent("agent1", "callback");
+        String callback = makeCallbackURI(request, "/conference/connect/agent1");
+
+        twilioAuthenticatedActions.callAgent("agent1", callback);
         ActiveCallsService.saveNewConference("agent1", conference_id);
 
         response.setContentType("text/xml");
@@ -43,6 +48,7 @@ public class ConnectClientServlet extends HttpServlet {
         conferenceVerb.setStartConferenceOnEnter(false);
         conferenceVerb.setEndConferenceOnExit(true);
         conferenceVerb.setWaitUrl("/conference/wait");
+        conferenceVerb.setWaitMethod("POST");
         try {
             twiMLResponse.append(dialVerb).append(conferenceVerb);
         } catch (TwiMLException e) {
@@ -50,5 +56,18 @@ public class ConnectClientServlet extends HttpServlet {
             throw new RuntimeException("Error generating conference.");
         }
         return twiMLResponse.toEscapedXML();
+    }
+
+
+    private String makeCallbackURI(HttpServletRequest request, String path){
+        try {
+            return new URL("http",
+                    request.getServerName(),
+                    -1,
+                    path).toString();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }
