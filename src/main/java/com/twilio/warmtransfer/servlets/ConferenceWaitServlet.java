@@ -5,8 +5,6 @@ import com.google.inject.Singleton;
 import com.twilio.sdk.verbs.Play;
 import com.twilio.sdk.verbs.Say;
 import com.twilio.sdk.verbs.TwiMLResponse;
-import com.twilio.warmtransfer.utils.TwilioCapabilityBuilder;
-import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

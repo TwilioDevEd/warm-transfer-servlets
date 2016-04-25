@@ -2,7 +2,7 @@ package com.twilio.warmtransfer.servlets;
 
 
 import com.google.inject.Singleton;
-import com.twilio.warmtransfer.utils.TwilioCapabilityBuilder;
+import com.twilio.warmtransfer.utils.TwilioAuthenticatedActions;
 import org.json.simple.JSONObject;
 
 import javax.servlet.ServletException;
@@ -13,13 +13,13 @@ import java.io.IOException;
 
 @Singleton
 public class TokenServlet extends HttpServlet{
-    private TwilioCapabilityBuilder capabilityBuilder;
+    private TwilioAuthenticatedActions capabilityBuilder;
 
     public TokenServlet(){
-        capabilityBuilder = new TwilioCapabilityBuilder();
+        capabilityBuilder = new TwilioAuthenticatedActions();
     }
 
-    public TokenServlet(TwilioCapabilityBuilder capabilityBuilder){
+    public TokenServlet(TwilioAuthenticatedActions capabilityBuilder){
         this.capabilityBuilder = capabilityBuilder;
     }
 

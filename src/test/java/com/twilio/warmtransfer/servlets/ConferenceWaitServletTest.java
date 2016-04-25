@@ -42,6 +42,4 @@ public class ConferenceWaitServletTest {
         assertThat(eng.evaluate("/Response/Say/text()", doc), CoreMatchers.containsString("Thank you for calling"));
         assertThat(eng.evaluate("/Response/Play/text()", doc), CoreMatchers.containsString("mp3"));
     }
-
-
 }
