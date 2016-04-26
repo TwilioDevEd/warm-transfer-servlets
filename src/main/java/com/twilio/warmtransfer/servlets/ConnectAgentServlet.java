@@ -29,7 +29,7 @@ public class ConnectAgentServlet extends HttpServlet {
     private String generateConnectConference(String conferenceId, boolean endOnExit) throws RuntimeException {
         TwiMLResponse twiMLResponse = new TwiMLResponse();
         Conference conferenceVerb = new Conference(conferenceId);
-        conferenceVerb.setStartConferenceOnEnter(false);
+        conferenceVerb.setStartConferenceOnEnter(true);
         conferenceVerb.setEndConferenceOnExit(endOnExit);
         conferenceVerb.setWaitUrl("/conference/wait");
         try {

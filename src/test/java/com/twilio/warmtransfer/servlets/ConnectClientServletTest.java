@@ -20,9 +20,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by vshyba on 25/04/16.
- */
+
 public class ConnectClientServletTest {
     private HttpServletResponse response;
     private StringWriter stringWriter;

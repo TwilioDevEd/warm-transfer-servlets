@@ -12,5 +12,6 @@ public class WarmTransferServletModule extends ServletModule {
         serve("/conference/wait").with(ConferenceWaitServlet.class);
         serve("/conference/connect/client").with(ConnectClientServlet.class);
         serve("/conference/connect/agent*").with(ConnectAgentServlet.class);
+        serve("/conference/call/agent*").with(CallAgentServlet.class);
     }
 }
