@@ -1,4 +1,4 @@
-package com.twilio.warmtransfer.servlets;
+package com.twilio.warmtransfer.services;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,11 +9,11 @@ import java.util.Map;
 public class ActiveCallsService {
     public static Map<String, String> localPersistence = new HashMap<>();
 
-    public static void saveNewConference(String agentId, String conference_id){
+    public static void saveNewConference(String agentId, String conference_id) {
         localPersistence.put(agentId, conference_id);
     }
 
-    public static String getConferenceFromAgentID(String agentId){
+    public static String getConferenceFromAgentID(String agentId) {
         return localPersistence.get(agentId);
     }
 }

@@ -3,12 +3,10 @@ package com.twilio.warmtransfer.servlets;
 import com.twilio.warmtransfer.utils.TwilioAuthenticatedActions;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.custommonkey.xmlunit.XpathEngine;
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +14,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.HashMap;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -35,7 +34,8 @@ public class ConnectClientServletTest {
         PrintWriter printWriter = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(printWriter);
         mockedAuthenticatedActions = mock(TwilioAuthenticatedActions.class);
-        connectClientServlet = new ConnectClientServlet(mockedAuthenticatedActions);
+        connectClientServlet = new ConnectClientServlet();
+        connectClientServlet.setTwilioAuthenticatedActions(mockedAuthenticatedActions);
     }
 
     @Test
@@ -57,7 +57,7 @@ public class ConnectClientServletTest {
         assertAttributeHasValue(conferenceNode, "waitUrl", "/conference/wait");
     }
 
-    private void assertAttributeHasValue(Node node, String name, String value){
+    private void assertAttributeHasValue(Node node, String name, String value) {
         assertNotNull(node.getAttributes().getNamedItem(name));
         assertEquals(node.getAttributes().getNamedItem(name).getNodeValue(), value);
 

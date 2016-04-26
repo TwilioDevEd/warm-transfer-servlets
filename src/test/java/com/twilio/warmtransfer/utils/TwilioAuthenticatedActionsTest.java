@@ -10,9 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.verifyNew;
-import static org.powermock.api.mockito.PowerMockito.whenNew;
+import static org.powermock.api.mockito.PowerMockito.*;
 
 
 @RunWith(PowerMockRunner.class)
@@ -21,7 +19,7 @@ public class TwilioAuthenticatedActionsTest {
 
     @Test(expected = RuntimeException.class)
     public void raisesIfNoAccountSidSetForEnv() throws Exception {
-        Map<String, String> env = new HashMap(){{
+        Map<String, String> env = new HashMap() {{
             put("TWILIO_AUTH_TOKEN", "token");
         }};
         new TwilioAuthenticatedActions(env);
@@ -29,7 +27,7 @@ public class TwilioAuthenticatedActionsTest {
 
     @Test(expected = RuntimeException.class)
     public void raisesIfNoAuthTokenSetForEnv() throws Exception {
-        Map<String, String> env = new HashMap(){{
+        Map<String, String> env = new HashMap() {{
             put("TWILIO_ACCOUNT_SID", "sid");
         }};
         new TwilioAuthenticatedActions(env);
@@ -40,7 +38,7 @@ public class TwilioAuthenticatedActionsTest {
         TwilioCapability mockedCapability = mock(TwilioCapability.class);
         whenNew(TwilioCapability.class).withArguments("sid", "token").thenReturn(mockedCapability);
 
-        Map<String, String> env = new HashMap(){{
+        Map<String, String> env = new HashMap() {{
             put("TWILIO_ACCOUNT_SID", "sid");
             put("TWILIO_AUTH_TOKEN", "token");
             put("TWILIO_NUMBER", "+1959595");

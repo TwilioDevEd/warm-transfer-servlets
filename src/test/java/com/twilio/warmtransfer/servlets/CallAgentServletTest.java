@@ -1,9 +1,9 @@
 package com.twilio.warmtransfer.servlets;
 
+import com.twilio.warmtransfer.services.ActiveCallsService;
 import com.twilio.warmtransfer.utils.TwilioAuthenticatedActions;
 import org.custommonkey.xmlunit.XMLUnit;
 import org.custommonkey.xmlunit.XpathEngine;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,9 +13,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 public class CallAgentServletTest {
@@ -32,8 +30,10 @@ public class CallAgentServletTest {
         PrintWriter printWriter = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(printWriter);
         mockedAuthenticatedActions = mock(TwilioAuthenticatedActions.class);
-        callAgentServlet = new CallAgentServlet(mockedAuthenticatedActions);
+        callAgentServlet = new CallAgentServlet();
+        callAgentServlet.setTwilioAuthenticatedActions(mockedAuthenticatedActions);
     }
+
     @Test
     public void doPost() throws Exception {
         HttpServletRequest request = mock(HttpServletRequest.class);

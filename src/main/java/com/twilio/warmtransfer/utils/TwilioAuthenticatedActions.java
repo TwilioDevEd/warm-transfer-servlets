@@ -22,11 +22,11 @@ public class TwilioAuthenticatedActions {
     public TwilioAuthenticatedActions(Map<String, String> env) throws RuntimeException {
         this.env = env;
         if (env.containsKey("TWILIO_ACCOUNT_SID") && env.containsKey("TWILIO_AUTH_TOKEN")
-                && env.containsKey("TWILIO_NUMBER")){
+                && env.containsKey("TWILIO_NUMBER")) {
             this.accountSid = env.get("TWILIO_ACCOUNT_SID");
             this.authToken = env.get("TWILIO_AUTH_TOKEN");
             this.twilioNumber = env.get("TWILIO_NUMBER");
-        }else{
+        } else {
             throw new RuntimeException("TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN and TWILIO_NUMBER must be set on system environment.");
         }
     }
@@ -36,7 +36,7 @@ public class TwilioAuthenticatedActions {
         capability.allowClientIncoming(agentName);
         try {
             return capability.generateToken();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             throw new RuntimeException("Error generating token");
         }
@@ -44,8 +44,8 @@ public class TwilioAuthenticatedActions {
 
     public String callAgent(final String agent_id, final String callbackUrl) throws RuntimeException {
         TwilioRestClient twilioRestClient = new TwilioRestClient(accountSid, authToken);
-        Map<String, String> callParams = new HashMap<String, String>(){{
-            put("To", "client:"+agent_id);
+        Map<String, String> callParams = new HashMap<String, String>() {{
+            put("To", "client:" + agent_id);
             put("From", twilioNumber);
             put("Url", callbackUrl);
         }};
@@ -55,7 +55,7 @@ public class TwilioAuthenticatedActions {
             return call.getSid();
         } catch (TwilioRestException e) {
             e.printStackTrace();
-            throw new RuntimeException("Error calling agent: "+agent_id);
+            throw new RuntimeException("Error calling agent: " + agent_id);
         }
     }
 }

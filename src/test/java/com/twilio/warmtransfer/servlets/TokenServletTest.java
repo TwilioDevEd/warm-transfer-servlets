@@ -12,10 +12,8 @@ import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.*;
 
 
 public class TokenServletTest {
@@ -31,8 +29,10 @@ public class TokenServletTest {
         PrintWriter printWriter = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(printWriter);
         mockedCapability = mock(TwilioAuthenticatedActions.class);
-        tokenServlet = new TokenServlet(mockedCapability);
+        tokenServlet = new TokenServlet();
+        tokenServlet.setTwilioAuthenticatedActions(mockedCapability);
     }
+
     @Test
     public void doPost() throws Exception {
         when(mockedCapability.getTokenForAgent("agent1")).thenReturn("token");
