@@ -30,8 +30,7 @@ public class CallAgentServletTest {
         PrintWriter printWriter = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(printWriter);
         mockedAuthenticatedActions = mock(TwilioAuthenticatedActions.class);
-        callAgentServlet = new CallAgentServlet();
-        callAgentServlet.setTwilioAuthenticatedActions(mockedAuthenticatedActions);
+        callAgentServlet = new CallAgentServlet(mockedAuthenticatedActions);
     }
 
     @Test

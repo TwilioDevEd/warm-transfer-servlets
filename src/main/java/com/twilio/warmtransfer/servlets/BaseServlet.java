@@ -15,7 +15,7 @@ import java.net.URL;
 public class BaseServlet extends HttpServlet {
     TwilioAuthenticatedActions twilioAuthenticatedActions;
 
-    void setTwilioAuthenticatedActions(TwilioAuthenticatedActions twilioAuthenticatedActions) {
+    public BaseServlet(TwilioAuthenticatedActions twilioAuthenticatedActions) {
         this.twilioAuthenticatedActions = twilioAuthenticatedActions;
     }
 

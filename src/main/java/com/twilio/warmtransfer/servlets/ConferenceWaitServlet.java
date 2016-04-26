@@ -7,12 +7,13 @@ import com.twilio.sdk.verbs.Say;
 import com.twilio.sdk.verbs.TwiMLResponse;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Singleton
-public class ConferenceWaitServlet extends BaseServlet {
+public class ConferenceWaitServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

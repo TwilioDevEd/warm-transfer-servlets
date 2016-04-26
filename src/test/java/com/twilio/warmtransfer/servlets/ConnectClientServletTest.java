@@ -34,8 +34,7 @@ public class ConnectClientServletTest {
         PrintWriter printWriter = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(printWriter);
         mockedAuthenticatedActions = mock(TwilioAuthenticatedActions.class);
-        connectClientServlet = new ConnectClientServlet();
-        connectClientServlet.setTwilioAuthenticatedActions(mockedAuthenticatedActions);
+        connectClientServlet = new ConnectClientServlet(mockedAuthenticatedActions);
     }
 
     @Test

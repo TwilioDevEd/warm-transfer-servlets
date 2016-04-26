@@ -1,5 +1,6 @@
 package com.twilio.warmtransfer.utils;
 
+import com.twilio.sdk.CapabilityToken;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.client.TwilioCapability;
@@ -7,7 +8,6 @@ import com.twilio.sdk.resource.instance.Call;
 
 import java.util.HashMap;
 import java.util.Map;
-
 
 public class TwilioAuthenticatedActions {
     private Map<String, String> env;
@@ -31,31 +31,21 @@ public class TwilioAuthenticatedActions {
         }
     }
 
-    public String getTokenForAgent(String agentName) throws RuntimeException {
+    public String getTokenForAgent(String agentName) throws CapabilityToken.DomainException {
         TwilioCapability capability = new TwilioCapability(accountSid, authToken);
         capability.allowClientIncoming(agentName);
-        try {
-            return capability.generateToken();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new RuntimeException("Error generating token");
-        }
+        return capability.generateToken();
+
     }
 
-    public String callAgent(final String agent_id, final String callbackUrl) throws RuntimeException {
+    public String callAgent(final String agent_id, final String callbackUrl) throws TwilioRestException {
         TwilioRestClient twilioRestClient = new TwilioRestClient(accountSid, authToken);
         Map<String, String> callParams = new HashMap<String, String>() {{
             put("To", "client:" + agent_id);
             put("From", twilioNumber);
             put("Url", callbackUrl);
         }};
-
-        try {
-            Call call = twilioRestClient.getAccount().getCallFactory().create(callParams);
-            return call.getSid();
-        } catch (TwilioRestException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error calling agent: " + agent_id);
-        }
+        Call call = twilioRestClient.getAccount().getCallFactory().create(callParams);
+        return call.getSid();
     }
 }

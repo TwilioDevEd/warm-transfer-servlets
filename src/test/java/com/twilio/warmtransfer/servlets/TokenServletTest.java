@@ -29,8 +29,7 @@ public class TokenServletTest {
         PrintWriter printWriter = new PrintWriter(stringWriter);
         when(response.getWriter()).thenReturn(printWriter);
         mockedCapability = mock(TwilioAuthenticatedActions.class);
-        tokenServlet = new TokenServlet();
-        tokenServlet.setTwilioAuthenticatedActions(mockedCapability);
+        tokenServlet = new TokenServlet(mockedCapability);
     }
 
     @Test
