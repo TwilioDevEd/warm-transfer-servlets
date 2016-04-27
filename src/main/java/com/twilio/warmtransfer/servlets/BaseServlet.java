@@ -1,10 +1,8 @@
 package com.twilio.warmtransfer.servlets;
 
-import com.twilio.sdk.verbs.Conference;
-import com.twilio.sdk.verbs.Dial;
 import com.twilio.sdk.verbs.TwiMLException;
-import com.twilio.sdk.verbs.TwiMLResponse;
 import com.twilio.warmtransfer.utils.TwilioAuthenticatedActions;
+import com.twilio.warmtransfer.utils.TwimlBuilder;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,26 +13,18 @@ import java.net.URL;
 public class BaseServlet extends HttpServlet {
     TwilioAuthenticatedActions twilioAuthenticatedActions;
 
-    public BaseServlet(TwilioAuthenticatedActions twilioAuthenticatedActions) {
+    BaseServlet(TwilioAuthenticatedActions twilioAuthenticatedActions) {
         this.twilioAuthenticatedActions = twilioAuthenticatedActions;
     }
 
     String generateConnectConference(String conferenceId, boolean startOnEnter, boolean endOnExit) throws RuntimeException {
-        TwiMLResponse twiMLResponse = new TwiMLResponse();
-        Conference conferenceVerb = new Conference(conferenceId);
-        conferenceVerb.setStartConferenceOnEnter(startOnEnter);
-        conferenceVerb.setEndConferenceOnExit(endOnExit);
-        conferenceVerb.setWaitUrl("/conference/wait");
-        conferenceVerb.setWaitMethod("POST");
         try {
-            twiMLResponse.append(new Dial()).append(conferenceVerb);
+            return new TwimlBuilder().generateConnectConference(conferenceId, startOnEnter, endOnExit).toEscapedXML();
         } catch (TwiMLException e) {
             e.printStackTrace();
             throw new RuntimeException("Error generating conference.");
         }
-        return twiMLResponse.toEscapedXML();
     }
-
 
     String makeCallbackURI(HttpServletRequest request, String path) {
         try {
