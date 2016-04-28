@@ -36,11 +36,11 @@
       * [Getting started with Twilio Java](//www.twilio.com/docs/java/install)
 
   .step(
-    data-title="Setting Up Voice Web Hook",
+    data-title="Setting Up the Voice Web Hook",
     data-file='src/main/java/com/twilio/warmtransfer/servlets/guice/WarmTransferServletModule.java',
     data-highlight='13')
     :markdown
-      ## Setting Up Voice Web Hook
+      ## Setting Up the Voice Web Hook
 
       First let's configure the voice webhook for the Twilio number that customers
       will dial when they want to talk to a support agent.
@@ -50,7 +50,7 @@
       `http://***.ngrok.io/conference/connect/client`
 
   .step(
-    data-title="Connecting as a Support Agent",
+    data-title="Connecting an Agent",
     data-file='src/main/webapp/js/main.js',
     data-highlight='17-51')
     :markdown
@@ -87,7 +87,7 @@
 
       To allow incoming connections through the web client an identifier must
       be provided when generating the token. For this tutorial we used fixed
-      identifier strings like `agent1` and `agent2` but you can use any
+      identifier strings like `agent1` and `agent2`, but you can use any
       generated string for your call center clients. These identifiers will be
       used to create outbound calls to the specified agent using the [Twilio
       REST API](//www.twilio.com/docs/api/rest).
@@ -101,7 +101,7 @@
       * [Making Calls With Twilio REST API](//www.twilio.com/docs/api/rest/making-calls)
 
   .step(
-    data-title="Handling Incoming Calls From Clients",
+    data-title="Handling Incoming Calls",
     data-file='src/main/java/com/twilio/warmtransfer/servlets/ConnectClientServlet.java',
     data-highlight='22-37')
     :markdown
@@ -121,7 +121,7 @@
       [here](//github.com/TwilioDevEd/warm-transfer-servlets/blob/master/src/main/java/com/twilio/warmtransfer/utils/TwimlBuilder.java#L23)
 
       We use the client's [`CallSid`](//www.twilio.com/help/faq/voice/what-is-a-call-sid) as the conference identifier. Since all participants
-      need this identifier to join the conference we'll need to store it in a databse so that we can grab it when we dial the second agent in later.
+      need this identifier to join the conference, we'll need to store it in a database so that we can grab it when we dial the second agent in later.
 
   .step(
     data-title="Providing TwiML Instruction For The Client",
@@ -153,7 +153,7 @@
       1. `Url` : A url to ask for TwiML instructions when the call connects
 
       Once the agent answers the call in the web client, a request is made to the
-      callback url instructing the agent's call to join the conference room where
+      callback url instructing this call to join the conference room where
       the client is already waiting.
 
   .step(
@@ -166,7 +166,7 @@
       When the client and the first agent are both in the call we are ready to
       perform a *warm  transfer* to a second agent. The first agent makes a
       request and we look for his `conferenceId` needed to dial the second agent in.
-      Since we already have a `callAgent` method we can simply call it to connect the second agent.
+      Since we already have a `callAgent` method we can simply call it to connect the second agent in.
 
   .step(
     data-title='The First Agent Leaves the Call',
@@ -182,16 +182,16 @@
       It is important to notice the differences between the TwiML each one of the
       participants received when joining the call. Both, agent one and two, have
       `startConferenceOnEnter` set to `true`. This means the conference will start when
-      any of them joins the call. For the client calling and for agent two, `endConferenceOnExit`
+      any of them joins the call. For the client calling and for agent two `endConferenceOnExit`
       is set to true. This causes the call to end when either of these two participants
-      drop the call.
+      drops the call.
 
   .step
     :markdown
       ## Where to next?
 
       That's it! We have just implemented warm transfers using Java Servlets.
-      Now your clients won't get disconnect from support calls while they are been
+      Now your clients won't get disconnect from support calls while they are being
       transferred to some else.
 
       If you're a Java developer working with Twilio, you might also enjoy these
