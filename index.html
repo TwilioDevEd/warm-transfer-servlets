@@ -89,13 +89,13 @@ which in our case is another end point of our application. This returns more Twi
 to <a href="//www.twilio.com/docs/api/twiml/say">say</a> welcome to the user, and also
 <a href="//www.twilio.com/docs/api/twiml/play">play</a> some music while on hold.
 Take a look at the code
-<a href="https://github.com/TwilioDevEd/warm-transfer-servlets/blob/master/src/main/java/com/twilio/warmtransfer/utils/TwimlBuilder.java#L23">here</a></p>
+<a href="//github.com/TwilioDevEd/warm-transfer-servlets/blob/master/src/main/java/com/twilio/warmtransfer/utils/TwimlBuilder.java#L23">here</a></p>
 <p>We use the client&#39;s <a href="//www.twilio.com/help/faq/voice/what-is-a-call-sid"><code>CallSid</code></a> as the conference identifier. Since all participants
 need this identifier to join the conference we&#39;ll need to store it in a databse so that we can grab it when we dial the second agent in later.</p>
 </div><div data-title="Providing TwiML Instruction For The Client" data-file="src/main/java/com/twilio/warmtransfer/utils/TwimlBuilder.java" data-highlight="10, 22-30" class="step"><h2 id="providing-twiml-instruction-for-the-client">Providing TwiML Instruction For The Client</h2>
 <p>Here we create a <code>TwiMLResponse</code> that will contain a
 <a href="//www.twilio.com/docs/api/twiml/dial"><code>Dial</code></a> verb with a
-<a href="https://www.twilio.com/docs/api/twiml/conference"><code>Conference</code></a> noun that
+<a href="//www.twilio.com/docs/api/twiml/conference"><code>Conference</code></a> noun that
 will instruct the client to join a specific conference room.</p>
 </div><div data-title="Dial First Agent Into the Call" data-file="src/main/java/com/twilio/warmtransfer/utils/TwilioAuthenticatedActions.java" data-highlight="26,27,41-50" class="step"><h2 id="dial-first-agent-into-the-call">Dial First Agent Into the Call</h2>
 <p>For our app we created a <code>callAgent</code> method to handle dialing our agents. This method uses
