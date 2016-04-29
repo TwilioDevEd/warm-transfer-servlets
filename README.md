@@ -56,14 +56,14 @@
 1. In one window/tab click `Connect as Agent 1` and in the other one click
    `Connect as Agent 2`. Now both agents are waiting for an incoming call.
 
-1. Dial your [Twilio Number]() to star a call with `Agent 1`. Your `TWILIO_NUMBER`
+1. Dial your [Twilio Number]() to start a call with `Agent 1`. Your `TWILIO_NUMBER`
    environment variable was set when configuring the application to run.
 
 1. When `Agent 1` answers the call from the client, he/she can dial `Agent 2` in
    by clicking on the `Dial agent 2 in` button.
 
 1. Once `Agent 2` answers the call all three participants will have joined the same
-   call. After that `Agent 1` can drop the call and leave both the client and `Agent 2`
+   call. After that, `Agent 1` can drop the call and leave both the client and `Agent 2`
    having a pleasant talk.
 
 ### Dependencies
@@ -85,4 +85,3 @@ This application uses this Twilio helper library.
 * No warranty expressed or implied. Software is as is. Diggity.
 * [MIT License](http://www.opensource.org/licenses/mit-license.html)
 * Lovingly crafted by Twilio Developer Education.
-
