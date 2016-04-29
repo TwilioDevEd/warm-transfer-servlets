@@ -22,6 +22,5 @@ public class ConferenceWaitServlet extends HttpServlet {
             ex.printStackTrace();
             throw new RuntimeException(ex.getMessage());
         }
-
     }
 }

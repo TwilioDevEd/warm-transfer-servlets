@@ -46,5 +46,4 @@ public class TokenServletTest {
         assertEquals("token", parsedJson.get("token"));
         assertEquals("agent1", parsedJson.get("agentId"));
     }
-
 }

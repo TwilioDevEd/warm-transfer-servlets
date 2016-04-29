@@ -9,8 +9,8 @@ import java.util.Map;
 public class ActiveCallsService {
     public static Map<String, String> localPersistence = new HashMap<>();
 
-    public static void saveNewConference(String agentId, String conference_id) {
-        localPersistence.put(agentId, conference_id);
+    public static void saveNewConference(String agentId, String conferenceId) {
+        localPersistence.put(agentId, conferenceId);
     }
 
     public static String getConferenceFromAgentID(String agentId) {

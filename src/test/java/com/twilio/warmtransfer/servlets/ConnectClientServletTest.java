@@ -59,6 +59,5 @@ public class ConnectClientServletTest {
     private void assertAttributeHasValue(Node node, String name, String value) {
         assertNotNull(node.getAttributes().getNamedItem(name));
         assertEquals(node.getAttributes().getNamedItem(name).getNodeValue(), value);
-
     }
 }
