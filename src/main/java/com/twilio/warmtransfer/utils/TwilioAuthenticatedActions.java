@@ -35,13 +35,12 @@ public class TwilioAuthenticatedActions {
         TwilioCapability capability = new TwilioCapability(accountSid, authToken);
         capability.allowClientIncoming(agentName);
         return capability.generateToken();
-
     }
 
-    public String callAgent(final String agent_id, final String callbackUrl) throws TwilioRestException {
+    public String callAgent(final String agentId, final String callbackUrl) throws TwilioRestException {
         TwilioRestClient twilioRestClient = new TwilioRestClient(accountSid, authToken);
         Map<String, String> callParams = new HashMap<String, String>() {{
-            put("To", "client:" + agent_id);
+            put("To", "client:" + agentId);
             put("From", twilioNumber);
             put("Url", callbackUrl);
         }};
