@@ -11,7 +11,7 @@
 
       Warm transfer eliminates this problem. Using Twilio powered
       warm transfers your agents will have the ability
-      to dial in another agent in realtime.
+      to dial in another agent in real-time.
 
       Here is how it works at a high level:
 
@@ -36,17 +36,17 @@
       * [Getting started with Twilio Java](//www.twilio.com/docs/java/install)
 
   .step(
-    data-title="Setting Up the Voice Web Hook",
+    data-title="Setting Up the Voice Webhook",
     data-file='src/main/java/com/twilio/warmtransfer/servlets/guice/WarmTransferServletModule.java',
     data-highlight='13')
     :markdown
-      ## Setting Up the Voice Web Hook
+      ## Setting Up the Voice Webhook
 
       First let's configure the voice webhook for the Twilio number that customers
       will dial when they want to talk to a support agent.
       ![Configure Voice](//howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
 
-      This should be the public-facing url or your app in production:
+      This should be the public-facing URL or your app in production:
       `http://***.ngrok.io/conference/connect/client`
 
   .step(
@@ -150,10 +150,10 @@
 
       1. `To`  : The agent web client's identifier (`agent1` or `agent2`)
 
-      1. `Url` : A url to ask for TwiML instructions when the call connects
+      1. `Url` : A URL to ask for TwiML instructions when the call connects
 
       Once the agent answers the call in the web client, a request is made to the
-      callback url instructing this call to join the conference room where
+      callback URL instructing this call to join the conference room where
       the client is already waiting.
 
   .step(

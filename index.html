@@ -15,7 +15,7 @@
 someone else?</p>
 <p>Warm transfer eliminates this problem. Using Twilio powered
 warm transfers your agents will have the ability
-to dial in another agent in realtime.</p>
+to dial in another agent in real-time.</p>
 <p>Here is how it works at a high level:</p>
 <ol>
 <li><p>The first agent becomes available when he/she connects through the web client.</p>
@@ -38,11 +38,11 @@ The client and the second agent stay on the call.</p>
 <ul>
 <li><a href="//www.twilio.com/docs/java/install">Getting started with Twilio Java</a></li>
 </ul>
-</div><div data-title="Setting Up the Voice Web Hook" data-file="src/main/java/com/twilio/warmtransfer/servlets/guice/WarmTransferServletModule.java" data-highlight="13" class="step"><h2 id="setting-up-the-voice-web-hook">Setting Up the Voice Web Hook</h2>
+</div><div data-title="Setting Up the Voice Webhook" data-file="src/main/java/com/twilio/warmtransfer/servlets/guice/WarmTransferServletModule.java" data-highlight="13" class="step"><h2 id="setting-up-the-voice-webhook">Setting Up the Voice Webhook</h2>
 <p>First let&#39;s configure the voice webhook for the Twilio number that customers
 will dial when they want to talk to a support agent.
 <img src="//howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif" alt="Configure Voice"></p>
-<p>This should be the public-facing url or your app in production:
+<p>This should be the public-facing URL or your app in production:
 <code>http://***.ngrok.io/conference/connect/client</code></p>
 </div><div data-title="Connecting an Agent" data-file="src/main/webapp/js/main.js" data-highlight="17-51" class="step"><h2 id="connecting-an-agent">Connecting an Agent</h2>
 <p>Here you can see all front-end code necessary to connect an agent using
@@ -106,11 +106,11 @@ receives a map with the following keys:</p>
 </li>
 <li><p><code>To</code>  : The agent web client&#39;s identifier (<code>agent1</code> or <code>agent2</code>)</p>
 </li>
-<li><p><code>Url</code> : A url to ask for TwiML instructions when the call connects</p>
+<li><p><code>Url</code> : A URL to ask for TwiML instructions when the call connects</p>
 </li>
 </ol>
 <p>Once the agent answers the call in the web client, a request is made to the
-callback url instructing this call to join the conference room where
+callback URL instructing this call to join the conference room where
 the client is already waiting.</p>
 </div><div data-title="Dial Second Agent Into the Call" data-file="src/main/java/com/twilio/warmtransfer/servlets/CallAgentServlet.java" data-highlight="23-35" class="step"><h2 id="dial-second-agent-into-the-call">Dial Second Agent Into the Call</h2>
 <p>When the client and the first agent are both in the call we are ready to
