@@ -9,7 +9,7 @@
 
 1. Edit the sample configuration file `.env.example` and edit it to match your configuration.
 
-   Once you have edited the `.env.example` file, if you are using a unix operating system,
+   Once you have edited the `.env.example` file, if you are using a UNIX operating system,
    just use the `source` command to load the variables into your environment:
 
    ```bash
@@ -26,7 +26,7 @@
 1. Configure Twilio to call your webhooks
 
    You will also need to configure Twilio to call your application when calls are received on your
-   `TWILIO_NUMBER`. The voice url should look something like this:
+   `TWILIO_NUMBER`. The voice URL should look something like this:
 
    ```
     http://9a159ccf.ngrok.io/conference/connect/client
@@ -48,7 +48,7 @@
    browser tabs or windows.
 
    **Notes:**
-   * Remember to use your SSL enabled ngrok url `https`.
+   * Remember to use your SSL enabled ngrok URL `https`.
    Failing to do this won't allow you to receive incoming calls.
    * The application has been tested with [Chrome](https://www.google.com/chrome/)
    and [Firefox](https://firefox.com). Safari is not supported at the moment.
@@ -56,7 +56,8 @@
 1. In one window/tab click `Connect as Agent 1` and in the other one click
    `Connect as Agent 2`. Now both agents are waiting for an incoming call.
 
-1. Dial your [Twilio Number]() to start a call with `Agent 1`. Your `TWILIO_NUMBER`
+1. Dial your [Twilio Number](https://www.twilio.com/user/account/phone-numbers/incoming)
+   to start a call with `Agent 1`. Your `TWILIO_NUMBER`
    environment variable was set when configuring the application to run.
 
 1. When `Agent 1` answers the call from the client, he/she can dial `Agent 2` in
