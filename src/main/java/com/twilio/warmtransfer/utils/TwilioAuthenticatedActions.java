@@ -25,11 +25,11 @@ public class TwilioAuthenticatedActions {
     @Inject
     public TwilioAuthenticatedActions(TwilioRestClient twilioRestClient,
             @Named("env") Map<String, String> env) {
-        this(System.getenv());
+        this(env);
         this.twilioRestClient = twilioRestClient;
     }
 
-    private TwilioAuthenticatedActions(Map<String, String> env) throws RuntimeException {
+    TwilioAuthenticatedActions(Map<String, String> env) throws RuntimeException {
         this.env = env;
         if (env.containsKey("TWILIO_ACCOUNT_SID") && env.containsKey("TWILIO_AUTH_TOKEN")
                 && env.containsKey("TWILIO_NUMBER")) {
