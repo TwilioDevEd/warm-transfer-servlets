@@ -12,7 +12,8 @@ repositories {
 dependencies {
   providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
 
-  compile 'com.twilio.sdk:twilio-java-sdk:5.2.1'
+  compile 'com.twilio.sdk:twilio:7.0.0-rc-+'
+  compile 'org.json:json:20160810'
   compile 'com.google.inject.extensions:guice-servlet:4.0'
   testCompile 'junit:junit:4.12'
   testCompile 'org.hamcrest:hamcrest-library:1.3'

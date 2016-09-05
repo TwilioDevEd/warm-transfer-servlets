@@ -1,5 +1,6 @@
 package com.twilio.warmtransfer.servlets;
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.twilio.warmtransfer.services.ActiveCallsService;
 import com.twilio.warmtransfer.utils.TwilioAuthenticatedActions;
@@ -11,8 +12,10 @@ import java.io.IOException;
 
 @Singleton
 public class ConnectAgentServlet extends BaseServlet {
-    public ConnectAgentServlet() {
-        super(new TwilioAuthenticatedActions());
+
+    @Inject
+    public ConnectAgentServlet(TwilioAuthenticatedActions twilioAuthenticatedActions) {
+        super(twilioAuthenticatedActions);
     }
 
     @Override

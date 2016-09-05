@@ -1,6 +1,7 @@
 package com.twilio.warmtransfer.servlets;
 
 
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.twilio.warmtransfer.utils.TwilioAuthenticatedActions;
 
@@ -12,8 +13,9 @@ import java.io.IOException;
 @Singleton
 public class IndexServlet extends BaseServlet {
 
-    public IndexServlet() {
-        super(new TwilioAuthenticatedActions());
+    @Inject
+    public IndexServlet(TwilioAuthenticatedActions twilioAuthenticatedActions) {
+        super(twilioAuthenticatedActions);
     }
 
     @Override

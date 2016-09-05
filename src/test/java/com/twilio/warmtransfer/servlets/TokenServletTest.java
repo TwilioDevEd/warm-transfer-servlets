@@ -1,7 +1,7 @@
 package com.twilio.warmtransfer.servlets;
 
 import com.twilio.warmtransfer.utils.TwilioAuthenticatedActions;
-import org.json.simple.parser.JSONParser;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +13,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 
 public class TokenServletTest {
@@ -42,7 +44,8 @@ public class TokenServletTest {
         tokenServlet.doPost(servletRequest, response);
 
         verify(mockedCapability).getTokenForAgent("agent1");
-        Map<String, String> parsedJson = (Map<String, String>) new JSONParser().parse(stringWriter.toString());
+        JSONObject root = new JSONObject(stringWriter.toString());
+        Map<String, Object> parsedJson = root.toMap();
         assertEquals("token", parsedJson.get("token"));
         assertEquals("agent1", parsedJson.get("agentId"));
     }
