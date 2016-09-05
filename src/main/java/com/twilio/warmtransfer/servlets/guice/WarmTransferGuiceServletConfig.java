@@ -8,6 +8,8 @@ public class WarmTransferGuiceServletConfig extends GuiceServletContextListener 
 
     @Override
     protected Injector getInjector() {
-        return Guice.createInjector(new WarmTransferServletModule());
+        return Guice.createInjector(
+                new WarmTransferServletModule()
+        );
     }
 }

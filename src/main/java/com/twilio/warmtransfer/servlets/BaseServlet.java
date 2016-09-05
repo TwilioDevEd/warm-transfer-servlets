@@ -1,6 +1,6 @@
 package com.twilio.warmtransfer.servlets;
 
-import com.twilio.sdk.verbs.TwiMLException;
+import com.twilio.twiml.TwiMLException;
 import com.twilio.warmtransfer.utils.TwilioAuthenticatedActions;
 import com.twilio.warmtransfer.utils.TwimlBuilder;
 
