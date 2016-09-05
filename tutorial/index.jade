@@ -38,7 +38,7 @@
   .step(
     data-title="Setting Up the Voice Webhook",
     data-file='src/main/java/com/twilio/warmtransfer/servlets/guice/WarmTransferServletModule.java',
-    data-highlight='13')
+    data-highlight='26')
     :markdown
       ## Setting Up the Voice Webhook
 
@@ -78,7 +78,7 @@
   .step(
     data-title="Generate a Capability Token",
     data-file='src/main/java/com/twilio/warmtransfer/utils/TwilioAuthenticatedActions.java',
-    data-highlight='34-39')
+    data-highlight='44-50')
     :markdown
       ## Generate a Capability Token
 
@@ -103,7 +103,7 @@
   .step(
     data-title="Handling Incoming Calls",
     data-file='src/main/java/com/twilio/warmtransfer/servlets/ConnectClientServlet.java',
-    data-highlight='22-37')
+    data-highlight='22-31')
     :markdown
       ## Handling Incoming Calls
 
@@ -126,11 +126,11 @@
   .step(
     data-title="Providing TwiML Instruction For The Client",
     data-file='src/main/java/com/twilio/warmtransfer/utils/TwimlBuilder.java',
-    data-highlight='10, 22-30')
+    data-highlight='15, 29-40')
     :markdown
       ## Providing TwiML Instruction For The Client
 
-      Here we create a `TwiMLResponse` that will contain a
+      Here we create a `VoiceResponse` using its Buider, and it will contain a
       [`Dial`](//www.twilio.com/docs/api/twiml/dial) verb with a
       [`Conference`](//www.twilio.com/docs/api/twiml/conference) noun that
       will instruct the client to join a specific conference room.
@@ -138,19 +138,22 @@
   .step(
     data-title='Dial First Agent Into the Call',
     data-file='src/main/java/com/twilio/warmtransfer/utils/TwilioAuthenticatedActions.java',
-    data-highlight='26,27,40-49')
+    data-highlight='36,37,52-57')
     :markdown
       ## Dial First Agent Into the Call
 
       For our app we created a `callAgent` method to handle dialing our agents. This method uses
-      Twilio's REST API to create a new call. The `create` method
-      receives a map with the following keys:
-
-      1. `From`: Your Twilio number
+      Twilio's Sdk `Call` class to create a new call. The `create` static method
+      receives the following parameters:
 
       1. `To`  : The agent web client's identifier (`agent1` or `agent2`)
 
+      1. `From`: Your Twilio number
+
       1. `Url` : A URL to ask for TwiML instructions when the call connects
+
+      The `create` method returns an object which contains the `execute` method and 
+      the call to Twilio's API only happens when this `execute` method is called.
 
       Once the agent answers the call in the web client, a request is made to the
       callback URL instructing this call to join the conference room where
@@ -171,7 +174,7 @@
   .step(
     data-title='The First Agent Leaves the Call',
     data-file='src/main/java/com/twilio/warmtransfer/utils/TwimlBuilder.java',
-    data-highlight='23-25')
+    data-highlight='31-33')
     :markdown
       ## The First Agent Leaves the Call
 
