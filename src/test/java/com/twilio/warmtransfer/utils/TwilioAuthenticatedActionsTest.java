@@ -1,18 +1,19 @@
 package com.twilio.warmtransfer.utils;
 
-import com.twilio.sdk.client.TwilioCapability;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.*;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
 
-
+@PowerMockIgnore("javax.crypto.*")
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(TwilioAuthenticatedActions.class)
 public class TwilioAuthenticatedActionsTest {
@@ -22,7 +23,7 @@ public class TwilioAuthenticatedActionsTest {
         Map<String, String> env = new HashMap() {{
             put("TWILIO_AUTH_TOKEN", "token");
         }};
-        new TwilioAuthenticatedActions(env);
+        new TwilioAuthenticatedActions(null, env);
     }
 
     @Test(expected = RuntimeException.class)
@@ -30,23 +31,16 @@ public class TwilioAuthenticatedActionsTest {
         Map<String, String> env = new HashMap() {{
             put("TWILIO_ACCOUNT_SID", "sid");
         }};
-        new TwilioAuthenticatedActions(env);
+        new TwilioAuthenticatedActions(null, env);
     }
 
     @Test
     public void usesAccountSidAndTokenForTwilioCapability() throws Exception {
-        TwilioCapability mockedCapability = mock(TwilioCapability.class);
-        whenNew(TwilioCapability.class).withArguments("sid", "token").thenReturn(mockedCapability);
-
-        Map<String, String> env = new HashMap() {{
+        String sid = new TwilioAuthenticatedActions(null, new HashMap<String, String>() {{
             put("TWILIO_ACCOUNT_SID", "sid");
             put("TWILIO_AUTH_TOKEN", "token");
             put("TWILIO_NUMBER", "+1959595");
-        }};
-        new TwilioAuthenticatedActions(env).getTokenForAgent("test");
-
-        verify(mockedCapability).allowClientIncoming("test");
-        verify(mockedCapability).generateToken();
-        verifyNew(TwilioCapability.class).withArguments("sid", "token");
+        }}).getTokenForAgent("test");
+        assertThat(sid, is(notNullValue()));
     }
 }
