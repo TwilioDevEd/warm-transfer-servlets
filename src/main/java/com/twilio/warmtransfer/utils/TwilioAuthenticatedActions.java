@@ -50,9 +50,9 @@ public class TwilioAuthenticatedActions {
     }
 
     public String callAgent(final String agentId, final String callbackUrl) {
-        Call call = Call.create(new PhoneNumber("client:" + agentId),
+        Call call = Call.creator(new PhoneNumber("client:" + agentId),
                 new PhoneNumber(twilioNumber),
-                URI.create(callbackUrl)).execute(twilioRestClient);
+                URI.create(callbackUrl)).create(twilioRestClient);
         return call.getSid();
     }
 }
