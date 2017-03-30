@@ -75,11 +75,11 @@ This application uses this Twilio helper library.
 
 ### Run the tests
 
-1. Run at the top-level directory.
+Run at the top-level directory.
 
-   ```bash
-   $ ./gradlew test
-   ```
+```bash
+$ ./gradlew test
+```
 
 ## Meta
 
