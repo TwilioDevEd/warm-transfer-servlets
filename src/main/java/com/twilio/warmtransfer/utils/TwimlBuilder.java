@@ -1,12 +1,12 @@
 package com.twilio.warmtransfer.utils;
 
-import com.twilio.twiml.Conference;
-import com.twilio.twiml.Dial;
-import com.twilio.twiml.Method;
-import com.twilio.twiml.Play;
-import com.twilio.twiml.Say;
+import com.twilio.http.HttpMethod;
 import com.twilio.twiml.TwiMLException;
 import com.twilio.twiml.VoiceResponse;
+import com.twilio.twiml.voice.Conference;
+import com.twilio.twiml.voice.Dial;
+import com.twilio.twiml.voice.Play;
+import com.twilio.twiml.voice.Say;
 
 public class TwimlBuilder {
     private VoiceResponse.Builder builder;
@@ -32,7 +32,7 @@ public class TwimlBuilder {
                         .startConferenceOnEnter(startOnEnter)
                         .endConferenceOnExit(endOnExit)
                         .waitUrl("/conference/wait")
-                        .waitMethod(Method.POST)
+                        .waitMethod(HttpMethod.POST)
                         .build())
                 .build();
         builder.dial(dial);
