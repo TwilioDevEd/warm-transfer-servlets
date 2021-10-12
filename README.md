@@ -1,5 +1,5 @@
 # Warm Transfer: Transfer support calls from one agent to another using Java Servlets
-[![Build Status](https://travis-ci.org/TwilioDevEd/warm-transfer-servlets.svg?branch=master)](https://travis-ci.org/TwilioDevEd/warm-transfer-servlets)
+[![Java Servlet CI](https://github.com/TwilioDevEd/warm-transfer-servlets/actions/workflows/gradle.yml/badge.svg)](https://github.com/TwilioDevEd/warm-transfer-servlets/actions/workflows/gradle.yml)
 
 ## Run the application
 
