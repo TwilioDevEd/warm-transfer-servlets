@@ -24,7 +24,7 @@ public class TwilioAuthenticatedActions {
 
     @Inject
     public TwilioAuthenticatedActions(TwilioRestClient twilioRestClient,
-                                      @Named("env") Dotenv env) {
+            @Named("env") Dotenv env) {
         this(env);
         this.twilioRestClient = twilioRestClient;
     }

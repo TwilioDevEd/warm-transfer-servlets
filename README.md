@@ -21,17 +21,6 @@
    ```
    cp .env.example .env
    ```
-   
-1. Once you have edited the `.env` file, if you are using a UNIX operating system,
-   just use the `source` command to load the variables into your environment:
-
-   ```bash
-   source .env
-   ```
-
-   If you are using a different operating system, make sure that all the
-   variables from the .env file are loaded into your environment.
-
    You can find your `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` in your
    [Twilio Account Settings](https://www.twilio.com/user/account/settings).
    You will also need a `TWILIO_NUMBER`, which you may find [here](https://www.twilio.com/user/account/phone-numbers/incoming).
@@ -47,7 +36,7 @@
 
    ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
 
-1. Run the application using Gradle Gretty plugin.
+2. Run the application using Gradle Gretty plugin.
 
    ```bash
    ./gradlew appRun
