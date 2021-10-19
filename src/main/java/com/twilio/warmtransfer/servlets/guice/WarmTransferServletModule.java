@@ -4,20 +4,14 @@ import com.google.inject.Provides;
 import com.google.inject.name.Named;
 import com.google.inject.servlet.ServletModule;
 import com.twilio.http.TwilioRestClient;
-import com.twilio.warmtransfer.servlets.CallAgentServlet;
-import com.twilio.warmtransfer.servlets.ConferenceWaitServlet;
-import com.twilio.warmtransfer.servlets.ConnectAgentServlet;
-import com.twilio.warmtransfer.servlets.ConnectClientServlet;
-import com.twilio.warmtransfer.servlets.IndexServlet;
-import com.twilio.warmtransfer.servlets.TokenServlet;
+import com.twilio.warmtransfer.servlets.*;
 import com.twilio.warmtransfer.utils.TwilioAuthenticatedActions;
-
-import java.util.Map;
-
-import static java.lang.System.getenv;
+import io.github.cdimascio.dotenv.Dotenv;
 
 
 public class WarmTransferServletModule extends ServletModule {
+    Dotenv dotenv = Dotenv.load();
+
     @Override
     public void configureServlets() {
         serve("/").with(IndexServlet.class);
@@ -33,13 +27,13 @@ public class WarmTransferServletModule extends ServletModule {
     @Provides
     public TwilioRestClient twilioRestClient() {
         return new TwilioRestClient.Builder(
-                getenv("TWILIO_ACCOUNT_SID"), getenv("TWILIO_AUTH_TOKEN"))
+                dotenv.get("TWILIO_ACCOUNT_SID"), dotenv.get("TWILIO_AUTH_TOKEN"))
                 .build();
     }
 
     @Named("env")
     @Provides
-    public Map<String, String> env() {
-        return System.getenv();
+    public Dotenv env() {
+        return dotenv;
     }
 }
