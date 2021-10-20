@@ -4,7 +4,7 @@
 ### Prerequisites
 
 1. [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-   installed in your operative system.
+   installed for your operative system.
 
 2. A Twilio account with a verified [phone number](https://www.twilio.com/console/phone-numbers/incoming). (Get a
    [free account](https://www.twilio.com/try-twilio?utm_campaign=tutorials&utm_medium=readme)
