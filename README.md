@@ -1,24 +1,26 @@
 # Warm Transfer: Transfer support calls from one agent to another using Java Servlets
 [![Java Servlet CI](https://github.com/TwilioDevEd/warm-transfer-servlets/actions/workflows/gradle.yml/badge.svg)](https://github.com/TwilioDevEd/warm-transfer-servlets/actions/workflows/gradle.yml)
 
+### Prerequisites
+
+1. [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+   installed for your operative system.
+
+2. A Twilio account with a verified [phone number](https://www.twilio.com/console/phone-numbers/incoming). (Get a
+   [free account](https://www.twilio.com/try-twilio?utm_campaign=tutorials&utm_medium=readme)
+   here.) If you are using a Twilio Trial Account, you can learn all about it
+   [here](https://www.twilio.com/help/faq/twilio-basics/how-does-twilios-free-trial-work).
+
 ## Run the application
 
 1. Clone the repository and `cd` into it.
 
 1. The application uses Gradle to manage dependencies.
 
-1. Edit the sample configuration file `.env.example` and edit it to match your configuration.
-
-   Once you have edited the `.env.example` file, if you are using a UNIX operating system,
-   just use the `source` command to load the variables into your environment:
-
-   ```bash
-   $ source .env.example
+1. Copy the sample configuration file and edit it to match your configuration.
    ```
-
-   If you are using a different operating system, make sure that all the
-   variables from the .env.example file are loaded into your environment.
-
+   cp .env.example .env
+   ```
    You can find your `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` in your
    [Twilio Account Settings](https://www.twilio.com/user/account/settings).
    You will also need a `TWILIO_NUMBER`, which you may find [here](https://www.twilio.com/user/account/phone-numbers/incoming).
@@ -34,10 +36,10 @@
 
    ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
 
-1. Run the application using Gradle Gretty plugin.
+2. Run the application using Gradle Gretty plugin.
 
    ```bash
-   $ ./gradlew appRun
+   ./gradlew appRun
    ```
 
    This will run the embedded Jetty application server that uses port 8080.
@@ -78,7 +80,7 @@ This application uses this Twilio helper library.
 Run at the top-level directory.
 
 ```bash
-$ ./gradlew test
+./gradlew test
 ```
 
 ## Meta

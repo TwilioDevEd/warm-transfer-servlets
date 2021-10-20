@@ -27,6 +27,7 @@ dependencies {
   compile 'com.google.inject.extensions:guice-servlet:4.0'
   compile "ch.qos.logback:logback-classic:${logbackVersion}"
   compile "ch.qos.logback:logback-access:${logbackVersion}"
+  compile 'io.github.cdimascio:dotenv-java:2.2.0'
 
   gretty "ch.qos.logback:logback-access:${logbackVersion}"
   gretty "ch.qos.logback:logback-classic:${logbackVersion}"
@@ -37,9 +38,9 @@ dependencies {
   testCompile 'org.powermock:powermock-module-junit4-rule-agent:1.6.1'
   testCompile 'org.powermock:powermock-module-junit4-rule:1.6.1'
   testCompile 'org.powermock:powermock-module-junit4:1.6.1'
-  testCompile 'xmlunit:xmlunit:1.4'
+  testCompile 'xmlunit:xmlunit:1.6'
 }
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.3'
+  gradleVersion = '3.0'
 }

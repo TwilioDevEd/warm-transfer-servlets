@@ -1,13 +1,12 @@
 package com.twilio.warmtransfer.utils;
 
+import io.github.cdimascio.dotenv.Dotenv;
+import io.github.cdimascio.dotenv.DotenvBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -19,28 +18,16 @@ import static org.hamcrest.core.Is.is;
 public class TwilioAuthenticatedActionsTest {
 
     @Test(expected = RuntimeException.class)
-    public void raisesIfNoAccountSidSetForEnv() throws Exception {
-        Map<String, String> env = new HashMap() {{
-            put("TWILIO_AUTH_TOKEN", "token");
-        }};
-        new TwilioAuthenticatedActions(null, env);
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void raisesIfNoAuthTokenSetForEnv() throws Exception {
-        Map<String, String> env = new HashMap() {{
-            put("TWILIO_ACCOUNT_SID", "sid");
-        }};
-        new TwilioAuthenticatedActions(null, env);
+    public void raisesIfNoVariablesForEnv() throws Exception {
+        // File does not exist, no entries in dotenv
+        Dotenv dotenv =  new DotenvBuilder().filename(".env.test").ignoreIfMissing().load();
+        new TwilioAuthenticatedActions(null, dotenv);
     }
 
     @Test
     public void usesAccountSidAndTokenForTwilioCapability() throws Exception {
-        String sid = new TwilioAuthenticatedActions(null, new HashMap<String, String>() {{
-            put("TWILIO_ACCOUNT_SID", "sid");
-            put("TWILIO_AUTH_TOKEN", "token");
-            put("TWILIO_NUMBER", "+1959595");
-        }}).getTokenForAgent("test");
+        Dotenv dotenv =  new DotenvBuilder().filename(".env.example").load();
+        String sid = new TwilioAuthenticatedActions(null, dotenv).getTokenForAgent("test");
         assertThat(sid, is(notNullValue()));
     }
 }

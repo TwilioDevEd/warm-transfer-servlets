@@ -8,15 +8,15 @@ import com.twilio.jwt.client.ClientCapability;
 import com.twilio.jwt.client.IncomingClientScope;
 import com.twilio.rest.api.v2010.account.Call;
 import com.twilio.type.PhoneNumber;
+import io.github.cdimascio.dotenv.Dotenv;
 
 import java.net.URI;
-import java.util.Map;
 
 import static java.util.Arrays.asList;
 
 
 public class TwilioAuthenticatedActions {
-    private Map<String, String> env;
+    private Dotenv dotenv;
     private String accountSid;
     private String authToken;
     private String twilioNumber;
@@ -24,15 +24,15 @@ public class TwilioAuthenticatedActions {
 
     @Inject
     public TwilioAuthenticatedActions(TwilioRestClient twilioRestClient,
-            @Named("env") Map<String, String> env) {
+            @Named("env") Dotenv env) {
         this(env);
         this.twilioRestClient = twilioRestClient;
     }
 
-    TwilioAuthenticatedActions(Map<String, String> env) throws RuntimeException {
-        this.env = env;
-        if (env.containsKey("TWILIO_ACCOUNT_SID") && env.containsKey("TWILIO_AUTH_TOKEN")
-                && env.containsKey("TWILIO_NUMBER")) {
+    TwilioAuthenticatedActions(Dotenv env) throws RuntimeException {
+        this.dotenv = env;
+        if (env.get("TWILIO_ACCOUNT_SID") != null && env.get("TWILIO_AUTH_TOKEN") != null
+                && env.get("TWILIO_NUMBER") != null) {
             this.accountSid = env.get("TWILIO_ACCOUNT_SID");
             this.authToken = env.get("TWILIO_AUTH_TOKEN");
             this.twilioNumber = env.get("TWILIO_NUMBER");
