@@ -9,7 +9,7 @@
 2. A Twilio account with a verified [phone number](https://www.twilio.com/console/phone-numbers/incoming). (Get a
    [free account](https://www.twilio.com/try-twilio?utm_campaign=tutorials&utm_medium=readme)
    here.) If you are using a Twilio Trial Account, you can learn all about it
-   [here](https://www.twilio.com/help/faq/twilio-basics/how-does-twilios-free-trial-work).
+   [here](https://www.twilio.com/docs/usage/tutorials/how-to-use-your-free-trial-account).
 
 ## Run the application
 
@@ -34,7 +34,7 @@
     http://9a159ccf.ngrok.io/conference/connect/client
    ```
 
-   ![Configure Voice](http://howtodocs.s3.amazonaws.com/twilio-number-config-all-med.gif)
+  [Learn how to configure your Twilio phone number for phone calls](https://www.twilio.com/docs/voice/tutorials/warm-transfer-java-servlets#set-up-the-voice-webhook)
 
 2. Run the application using Gradle Gretty plugin.
 
